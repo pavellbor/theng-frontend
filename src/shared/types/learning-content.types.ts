@@ -23,7 +23,7 @@ export interface Sentence {
 
 export interface GrammarTopic {
   id: number;
-  title: string;
+  name: string;
   description: string;
   category: GrammarTopicCategory;
   cefrLevel: CEFRLevel;

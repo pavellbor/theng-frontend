@@ -32,6 +32,11 @@ export const router = createRouter({
           name: 'assessment',
           component: () => import('@/pages/AssessmentPage.vue'),
         },
+        {
+          path: '/exercises',
+          name: 'exercises',
+          component: () => import('@/pages/ExercisesPage.vue'),
+        },
       ],
     },
     {

@@ -9,12 +9,10 @@ const assessmentStore = useAssessmentStore()
   <div class="container mx-auto max-w-4xl py-10">
     <Card>
       <template #title>
-        <h1 class="text-2xl font-bold">Определение уровня владения английским</h1>
+        <h1>Определение уровня владения английским</h1>
       </template>
       <template #subtitle>
-        <p class="text-sm text-gray-500">
-          Перед началом обучения мы определим ваш текущий уровень владения английским языком
-        </p>
+        <p>Перед началом обучения мы определим ваш текущий уровень владения английским языком</p>
       </template>
       <template #content>
         <div class="my-4 flex flex-col gap-4">
