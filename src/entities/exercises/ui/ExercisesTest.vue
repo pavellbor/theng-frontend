@@ -34,7 +34,7 @@ const translation = ref('')
           <p class="mb-4 text-3xl text-indigo-500">
             {{ exercisesStore.exercise?.sentence.russianTranslation }}
           </p>
-          <div class="flex gap-2">
+          <div class="flex flex-wrap justify-center gap-2">
             <Badge
               :value="`Уровень: ${exercisesStore.exercise?.sentence.cefrLevel}`"
               severity="secondary"
