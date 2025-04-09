@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+ARG API_URL
+
 # Создаем .env с правильным API URL
 RUN echo "VITE_API_URL=${API_URL}" > .env.production
 
