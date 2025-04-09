@@ -2,9 +2,9 @@ import { api } from '../../shared/libs/api'
 import type {
   AssessmentResultRdo,
   AssessmentStartRdo,
-  CheckTranslationDto,
+  AssessmentCheckTranslationDto,
   FinishAssessmentDto,
-  TranslationCheckRdo,
+  AssessmentCheckTranslationRdo,
   UserRdo,
 } from '../../shared/types'
 
@@ -13,8 +13,8 @@ export const startAssessment = async () => {
   return response.data
 }
 
-export const checkTranslation = async (checkTranslationDto: CheckTranslationDto) => {
-  const response = await api.post<TranslationCheckRdo>('/assessment/check', checkTranslationDto)
+export const checkTranslation = async (checkTranslationDto: AssessmentCheckTranslationDto) => {
+  const response = await api.post<AssessmentCheckTranslationRdo>('/assessment/check', checkTranslationDto)
   return response.data
 }
 

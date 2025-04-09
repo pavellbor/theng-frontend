@@ -24,7 +24,7 @@ export interface AssessmentProgress {
 /**
  * Интерфейс для обратной связи по переводу
  */
-export interface TranslationFeedback {
+export interface AssessmentTranslationFeedback {
   overall: {
     isCorrect: boolean
     feedback: string
@@ -42,7 +42,7 @@ export interface TranslationFeedback {
 /**
  * Интерфейс для запроса на проверку перевода
  */
-export interface CheckTranslationDto {
+export interface AssessmentCheckTranslationDto {
   sessionId: string
   userTranslation: string
 }
@@ -60,11 +60,11 @@ export interface AssessmentStartRdo {
 /**
  * Интерфейс для результата проверки перевода
  */
-export interface TranslationCheckRdo {
+export interface AssessmentCheckTranslationRdo {
   isCorrect: boolean
   progress: AssessmentProgress
   nextSentence: AssessmentSentence | null
-  feedback: TranslationFeedback
+  feedback: AssessmentTranslationFeedback
   isCompleted: boolean
 }
 
