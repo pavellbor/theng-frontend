@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 
 # Создаем .env с правильным API URL
-RUN echo "VITE_API_URL=http://localhost:3000" > .env.production
+RUN echo "VITE_API_URL=${API_URL}" > .env.production
 
 RUN npm run build
 
