@@ -6,7 +6,7 @@ import { useAuthStore } from '@/entities/auth'
 declare module 'vue-router' {
   interface RouteMeta {
     requiresAuth?: boolean
-    requiresCefrLevel?: boolean
+    requiresStudyLevel?: boolean
   }
 }
 
@@ -24,7 +24,7 @@ export const router = createRouter({
           path: '',
           component: HomePage,
           meta: {
-            requiresCefrLevel: true,
+            requiresStudyLevel: true,
           },
         },
         {
@@ -57,7 +57,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {
     next({ path: '/login' })
-  } else if (to.meta.requiresCefrLevel && !authStore.user?.cefrLevel) {
+  } else if (to.meta.requiresStudyLevel && !authStore.user?.studyLevel) {
     next({ path: '/assessment' })
   } else {
     next()
