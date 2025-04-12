@@ -30,11 +30,6 @@ const translation = ref('')
           </p>
           <div class="flex gap-2">
             <Badge :value="`Уровень: ${assessmentStore.sentence?.cefrLevel}`" severity="secondary" />
-            <Badge :value="`Слово: ${assessmentStore.sentence?.word}`" severity="secondary" />
-            <Badge
-              :value="`Грамматика: ${assessmentStore.sentence?.grammarTopic}`"
-              severity="secondary"
-            />
           </div>
         </div>
       </template>

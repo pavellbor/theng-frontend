@@ -34,11 +34,6 @@ const translation = ref('')
               :value="`Уровень: ${assessmentStore.sentence?.cefrLevel}`"
               severity="secondary"
             />
-            <Badge :value="`Слово: ${assessmentStore.sentence?.word}`" severity="secondary" />
-            <Badge
-              :value="`Грамматика: ${assessmentStore.sentence?.grammarTopic}`"
-              severity="secondary"
-            />
           </div>
         </div>
       </template>
@@ -66,32 +61,6 @@ const translation = ref('')
                 </div>
               </template>
               <p class="text-sm">{{ assessmentStore.feedback?.overall.feedback }}</p>
-            </Panel>
-            <Panel>
-              <template #header>
-                <div class="flex items-center gap-2">
-                  <i
-                    v-if="assessmentStore.feedback?.word.isCorrect"
-                    class="pi pi-check text-green-500"
-                  ></i>
-                  <i v-else class="pi pi-times text-red-500"></i>
-                  <span class="font-bold">Ключевое слово</span>
-                </div>
-              </template>
-              <p class="text-sm">{{ assessmentStore.feedback?.word.feedback }}</p>
-            </Panel>
-            <Panel>
-              <template #header>
-                <div class="flex items-center gap-2">
-                  <i
-                    v-if="assessmentStore.feedback?.grammarTopic.isCorrect"
-                    class="pi pi-check text-green-500"
-                  ></i>
-                  <i v-else class="pi pi-times text-red-500"></i>
-                  <span class="font-bold">Грамматика</span>
-                </div>
-              </template>
-              <p class="text-sm">{{ assessmentStore.feedback?.grammarTopic.feedback }}</p>
             </Panel>
           </div>
           <Button
