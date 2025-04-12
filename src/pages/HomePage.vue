@@ -45,7 +45,7 @@ onMounted(async () => {
             </p>
           </div>
           <div class="flex flex-col items-center justify-center gap-2 rounded-lg bg-gray-100 p-4">
-            <p>На пути к {{ userProgressStore.stats?.progress.levelProgress.nextLevel }}</p>
+            <p>На пути к {{ authStore.user?.studyLevel }}</p>
             <p class="text-2xl font-bold text-indigo-500">
               {{ Math.round(userProgressStore.stats?.progress.levelProgress.percentage ?? 0) }}%
             </p>
