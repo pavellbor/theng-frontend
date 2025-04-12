@@ -4,7 +4,8 @@ export interface User {
   id: number;
   email: string;
   name: string | null;
-  cefrLevel: CEFRLevel | null;
+  studyLevel: CEFRLevel | null;
+  proficiencyLevel: CEFRLevel | null;
   role: Role;
   lastActive: Date;
   dailyGoal: number;
@@ -28,7 +29,8 @@ export interface UserRdo {
   id: number;
   email: string;
   name: string | null;
-  cefrLevel: CEFRLevel | null;
+  studyLevel: CEFRLevel | null;
+  proficiencyLevel: CEFRLevel | null;
   role: Role;
   lastActive: Date;
   dailyGoal: number;

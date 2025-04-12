@@ -31,7 +31,7 @@ const toggleMenu = (event: Event) => {
                 {{ authStore.user?.name || authStore.user?.email.split('@')[0] }}
               </span>
             </div>
-            <Badge v-if="authStore.user?.cefrLevel" :value="authStore.user.cefrLevel" />
+            <Badge v-if="authStore.user?.proficiencyLevel" :value="authStore.user.proficiencyLevel" />
             <div class="card flex justify-center">
               <Button icon="pi pi-ellipsis-v" variant="text" size="small" @click="toggleMenu" />
               <Menu

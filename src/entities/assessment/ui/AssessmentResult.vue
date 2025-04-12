@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { Button, Card, Textarea, Badge, FloatLabel, Panel, DataTable, Column } from 'primevue'
-import ProgressBar from 'primevue/progressbar'
+import { Button, Card, DataTable, Column } from 'primevue'
 import { useAssessmentStore } from '@/entities/assessment/assessment.store'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 const assessmentStore = useAssessmentStore()
+const router = useRouter()
 
 const formattedLevelStats = computed(() => {
   return Object.entries(assessmentStore.result?.levelStats || {}).map(([level, stats]) => ({
@@ -50,8 +51,12 @@ const rowClass = (data: any) => {
       </template>
       <template #footer>
         <div class="flex justify-end gap-4">
-          <Button label="Пройти тест снова" variant="outlined" @click="assessmentStore.startAssessment" />
-          <Button label="Перейти к обучению" />
+          <Button
+            label="Пройти тест снова"
+            variant="outlined"
+            @click="assessmentStore.startAssessment"
+          />
+          <Button label="Перейти к упражнениям" @click="router.push('/exercises')" />
         </div>
       </template>
     </Card>
