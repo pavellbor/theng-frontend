@@ -13,6 +13,12 @@ const progress = computed(() => {
 })
 
 const translation = ref('')
+
+const handleSubmit = () => {
+  if (translation.value.trim()) {
+    exercisesStore.checkTranslation(translation.value)
+  }
+}
 </script>
 
 <template>
@@ -35,10 +41,6 @@ const translation = ref('')
             {{ exercisesStore.exercise?.sentence.russianTranslation }}
           </p>
           <div class="flex flex-wrap justify-center gap-2">
-            <Badge
-              :value="`Уровень: ${exercisesStore.exercise?.sentence.cefrLevel}`"
-              severity="secondary"
-            />
             <Badge :value="`Слово: ${exercisesStore.exercise?.sentence.word.word}`" severity="secondary" />
             <Badge
               :value="`Грамматика: ${exercisesStore.exercise?.sentence.grammarTopic.name}`"
@@ -55,11 +57,13 @@ const translation = ref('')
             style="resize: none"
             class="w-full"
             v-model="translation"
+            @keyup.enter="handleSubmit"
           />
           <Button
             label="Проверить"
-            @click="exercisesStore.checkTranslation(translation)"
+            @click="handleSubmit"
             :loading="exercisesStore.isLoading"
+            class="mt-2"
           />
         </div>
       </template>

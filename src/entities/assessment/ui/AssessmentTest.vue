@@ -7,6 +7,12 @@ import { ref } from 'vue'
 const assessmentStore = useAssessmentStore()
 
 const translation = ref('')
+
+const handleSubmit = () => {
+  if (translation.value.trim()) {
+    assessmentStore.checkTranslation(translation.value)
+  }
+}
 </script>
 
 <template>
@@ -29,7 +35,10 @@ const translation = ref('')
             {{ assessmentStore.sentence?.russianTranslation }}
           </p>
           <div class="flex gap-2">
-            <Badge :value="`Уровень: ${assessmentStore.sentence?.cefrLevel}`" severity="secondary" />
+            <Badge
+              :value="`Уровень: ${assessmentStore.sentence?.cefrLevel}`"
+              severity="secondary"
+            />
           </div>
         </div>
       </template>
@@ -41,11 +50,13 @@ const translation = ref('')
             style="resize: none"
             class="w-full"
             v-model="translation"
+            @keyup.enter="handleSubmit"
           />
           <Button
             label="Проверить"
-            @click="assessmentStore.checkTranslation(translation)"
+            @click="handleSubmit"
             :loading="assessmentStore.isLoading"
+            class="mt-2"
           />
         </div>
       </template>

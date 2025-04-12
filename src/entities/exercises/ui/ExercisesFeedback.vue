@@ -31,16 +31,12 @@ const progress = computed(() => {
       <template #content>
         <div class="my-20 flex flex-col items-center text-center">
           <p class="mb-4 text-3xl text-indigo-500">
-            {{ exercisesStore.exercise?.sentence.russianTranslation }}<br>
+            {{ exercisesStore.exercise?.sentence.russianTranslation }}<br />
             <span class="text-indigo-400">{{
               exercisesStore.exercise?.sentence.englishSentence
             }}</span>
           </p>
           <div class="flex gap-2">
-            <Badge
-              :value="`Уровень: ${exercisesStore.exercise?.sentence.cefrLevel}`"
-              severity="secondary"
-            />
             <Badge
               :value="`Слово: ${exercisesStore.exercise?.sentence.word.word}`"
               severity="secondary"
@@ -77,43 +73,13 @@ const progress = computed(() => {
               </template>
               <p class="text-sm">{{ exercisesStore.feedback?.overall.feedback }}</p>
             </Panel>
-            <Panel>
-              <template #header>
-                <div class="flex items-center gap-2">
-                  <i
-                    v-if="exercisesStore.feedback?.word.isCorrect"
-                    class="pi pi-check text-green-500"
-                  ></i>
-                  <i v-else class="pi pi-times text-red-500"></i>
-                  <span class="font-bold">Ключевое слово</span>
-                </div>
-              </template>
-              <p class="text-sm">{{ exercisesStore.feedback?.word.feedback }}</p>
-            </Panel>
-            <Panel>
-              <template #header>
-                <div class="flex items-center gap-2">
-                  <i
-                    v-if="exercisesStore.feedback?.grammarTopic.isCorrect"
-                    class="pi pi-check text-green-500"
-                  ></i>
-                  <i v-else class="pi pi-times text-red-500"></i>
-                  <span class="font-bold">Грамматика</span>
-                </div>
-              </template>
-              <p class="text-sm">{{ exercisesStore.feedback?.grammarTopic.feedback }}</p>
-            </Panel>
           </div>
           <Button
             v-if="exercisesStore.nextExercise"
             label="Следующее предложение"
             @click="exercisesStore.showNextSentence()"
           />
-          <Button
-            v-else
-            label="Завершить"
-            @click="exercisesStore.finishSession()"
-          />
+          <Button v-else label="Завершить" @click="exercisesStore.finishSession()" />
         </div>
       </template>
     </Card>
