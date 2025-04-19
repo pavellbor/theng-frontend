@@ -53,7 +53,7 @@ const chartData = computed(() => {
   const lastSevenDays = Array.from({ length: 7 }, (_, i) => {
     const date = dayjs().subtract(6 - i, 'day')
     return {
-      dayOfWeek: date.format('dd')[0], // Первая буква дня недели
+      dayOfWeek: date.format('dd'),
       date: date.format('YYYY-MM-DD')
     }
   })
