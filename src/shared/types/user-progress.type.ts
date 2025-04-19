@@ -32,5 +32,9 @@ export interface GetUserLearningStatsAndProgressRdo {
     accuracy: number
     sessionsCompleted: number
     totalTimeSpent: number
+    sessionsHistory: {
+      date: string
+      exercisesCompleted: number
+    }[]
   }
 }

@@ -5,9 +5,14 @@ import Button from 'primevue/button'
 import Card from 'primevue/card'
 import Chart from 'primevue/chart'
 import { ProgressBar, Skeleton, Tag } from 'primevue'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ru'
 
 import { useAuthStore } from '@/entities/auth'
 import { useUserProgressStore } from '@/entities/user-progress/user-progress.store'
+
+// Устанавливаем русскую локаль для dayjs
+dayjs.locale('ru')
 
 const authStore = useAuthStore()
 const userProgressStore = useUserProgressStore()
@@ -30,7 +35,7 @@ const chartData = computed(() => {
       labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
       datasets: [
         {
-          label: 'Активность за неделю',
+          label: 'Активность за последние 7 дней',
           data: [0, 0, 0, 0, 0, 0, 0],
           backgroundColor: 'rgba(99, 102, 241, 0.2)',
           borderColor: 'rgb(99, 102, 241)',
@@ -41,16 +46,37 @@ const chartData = computed(() => {
     }
   }
 
-  const totalExercises = userProgressStore.stats?.stats?.totalExercises ?? 10
+  // Получаем историю сессий из данных пользователя
+  const sessionsHistory = userProgressStore.stats?.stats?.sessionsHistory ?? []
+  
+  // Формируем массив последних 7 дней
+  const lastSevenDays = Array.from({ length: 7 }, (_, i) => {
+    const date = dayjs().subtract(6 - i, 'day')
+    return {
+      dayOfWeek: date.format('dd')[0], // Первая буква дня недели
+      date: date.format('YYYY-MM-DD')
+    }
+  })
+
+  // Группируем упражнения по дням
+  const exercisesByDay = lastSevenDays.map(day => {
+    const sessionsForDay = sessionsHistory.filter(session => 
+      session.date.startsWith(day.date)
+    )
+    
+    // Суммируем количество выполненных упражнений за день
+    return sessionsForDay.reduce(
+      (sum, session) => sum + (session.exercisesCompleted || 0), 
+      0
+    )
+  })
 
   return {
-    labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+    labels: lastSevenDays.map(day => day.dayOfWeek),
     datasets: [
       {
-        label: 'Активность за неделю',
-        data: Array(7)
-          .fill(0)
-          .map(() => Math.max(1, Math.round((Math.random() * totalExercises) / 10))),
+        label: 'Активность за последние 7 дней',
+        data: exercisesByDay,
         backgroundColor: 'rgba(99, 102, 241, 0.2)',
         borderColor: 'rgb(99, 102, 241)',
         tension: 0.4,
