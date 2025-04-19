@@ -27,6 +27,8 @@ export interface Exercise {
     word: Word
     grammarTopic: GrammarTopic
   }
+  isWordRepetition: boolean
+  isGrammarRepetition: boolean
 }
 
 export interface StartSessionRdo {
