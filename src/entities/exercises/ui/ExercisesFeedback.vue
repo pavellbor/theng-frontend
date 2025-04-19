@@ -38,12 +38,10 @@ const progress = computed(() => {
           </p>
           <div class="flex gap-2">
             <Badge
-              v-if="exercisesStore.exercise?.isWordRepetition"
               :value="`Слово: ${exercisesStore.exercise?.sentence.word.word}`"
               severity="secondary"
             />
             <Badge
-              v-if="exercisesStore.exercise?.isGrammarRepetition"
               :value="`Грамматика: ${exercisesStore.exercise?.sentence.grammarTopic.name}`"
               severity="secondary"
             />
