@@ -12,11 +12,13 @@ export interface GetUserLearningStatsAndProgressRdo {
       mastered: number
       total: number
       percentage: number
+      inProgress: number
     }
     grammarTopics: {
       mastered: number
       total: number
       percentage: number
+      inProgress: number
     }
     levelProgress: {
       currentLevel: CEFRLevel
