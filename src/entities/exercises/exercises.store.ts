@@ -89,7 +89,6 @@ export const useExercisesStore = defineStore('exercises', {
     },
 
     async checkTranslation(userTranslation: string) {
-      console.log('checkTranslation', userTranslation)
       this.isLoading = true
       try {
         this.userTranslation = userTranslation
