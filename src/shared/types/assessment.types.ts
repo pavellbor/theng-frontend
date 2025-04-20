@@ -7,6 +7,7 @@ export interface AssessmentSentence {
   id: number
   englishSentence: string
   russianTranslation: string
+  literalTranslation?: string
   grammarTopic: string
   word: string
   cefrLevel: CEFRLevel

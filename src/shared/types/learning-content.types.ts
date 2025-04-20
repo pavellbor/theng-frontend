@@ -14,6 +14,7 @@ export interface Sentence {
   id: number;
   englishSentence: string;
   russianTranslation: string;
+  literalTranslation?: string | null;
   grammarTopicId: number;
   wordId: number;
   cefrLevel: CEFRLevel;

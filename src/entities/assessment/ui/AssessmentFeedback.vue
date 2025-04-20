@@ -29,6 +29,9 @@ const translation = ref('')
             {{ assessmentStore.sentence?.russianTranslation }}<br />
             <span class="text-indigo-400">{{ assessmentStore.sentence?.englishSentence }}</span>
           </p>
+          <div v-if="assessmentStore.sentence?.literalTranslation" class="mb-4 text-sm text-gray-600 italic">
+            {{ assessmentStore.sentence.literalTranslation }}
+          </div>
           <div class="flex gap-2">
             <Badge
               :value="`Уровень: ${assessmentStore.sentence?.cefrLevel}`"

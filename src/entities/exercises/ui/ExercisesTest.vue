@@ -41,6 +41,9 @@ const handleSubmit = () => {
           <p class="mb-4 text-3xl text-indigo-500">
             {{ exercisesStore.exercise?.sentence.russianTranslation }}
           </p>
+          <div v-if="exercisesStore.exercise?.sentence.literalTranslation" class="mb-4 text-sm text-gray-600 italic">
+            {{ exercisesStore.exercise?.sentence.literalTranslation }}
+          </div>
           <div class="flex flex-wrap justify-center gap-2">
             <Badge
               v-if="
