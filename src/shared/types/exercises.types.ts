@@ -29,6 +29,8 @@ export interface Exercise {
   }
   isWordRepetition: boolean
   isGrammarRepetition: boolean
+  usedWordHint: boolean
+  usedGrammarHint: boolean
 }
 
 export interface StartSessionRdo {
@@ -69,4 +71,10 @@ export interface TranslationFeedback {
     isCorrect: boolean
     feedback: string
   }
+}
+
+export interface TranslationHint {
+  wordHint: string
+  grammarHint: string
+  generalHint: string
 }

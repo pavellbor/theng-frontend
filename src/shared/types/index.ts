@@ -14,4 +14,7 @@ export * from './learning-content.types';
 export * from './exercises.types';
 
 // Экспорт новых типов для тестирования
-export * from './assessment.types'; 
+export * from './assessment.types';
+
+export type { TranslationFeedback } from './exercises.types'
+export type { TranslationHint } from './exercises.types' 

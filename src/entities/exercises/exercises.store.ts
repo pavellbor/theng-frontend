@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import * as exercisesApi from './exercises.api'
 import type { ExerciseSession, TranslationFeedback } from '@/shared/types'
-import type { Exercise } from '@/shared/types'
+import type { Exercise, TranslationHint } from '@/shared/types'
+import { HintType } from './exercises.api'
 
 interface ExercisesState {
   isLoading: boolean
@@ -17,6 +18,10 @@ interface ExercisesState {
   duration: number
   userTranslation: string
   nextExercise: Exercise | null
+  isHintLoading: boolean
+  hint: TranslationHint | null
+  isHintVisible: boolean
+  requestedHintType: HintType | null
 }
 
 export const useExercisesStore = defineStore('exercises', {
@@ -34,6 +39,10 @@ export const useExercisesStore = defineStore('exercises', {
     newCefrLevel: '',
     userTranslation: '',
     nextExercise: null,
+    isHintLoading: false,
+    hint: null,
+    isHintVisible: false,
+    requestedHintType: null,
   }),
 
   actions: {
@@ -105,15 +114,50 @@ export const useExercisesStore = defineStore('exercises', {
       }
     },
 
+    async loadTranslationHint(type?: HintType) {
+      this.isHintLoading = true;
+      this.requestedHintType = type || HintType.BOTH;
+      try {
+        this.hint = await exercisesApi.getTranslationHint(type);
+        this.isHintVisible = true;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      } finally {
+        this.isHintLoading = false;
+      }
+    },
+
+    async loadWordHint() {
+      this.requestedHintType = HintType.WORD;
+      return this.loadTranslationHint(HintType.WORD);
+    },
+
+    async loadGrammarHint() {
+      this.requestedHintType = HintType.GRAMMAR;
+      return this.loadTranslationHint(HintType.GRAMMAR);
+    },
+
+    hideHint() {
+      this.isHintVisible = false;
+    },
+
+    clearHint() {
+      this.hint = null;
+      this.isHintVisible = false;
+      this.requestedHintType = null;
+    },
+
     async showNextSentence() {
-      this.exercise = this.nextExercise
+      this.exercise = this.nextExercise;
 
-      this.userTranslation = ''
-      this.isCorrect = false
-      this.nextExercise = null
-      this.feedback = null
+      this.userTranslation = '';
+      this.isCorrect = false;
+      this.nextExercise = null;
+      this.feedback = null;
+      this.clearHint();
 
-      this.setScreen('test')
+      this.setScreen('test');
     },
 
     async finishSession() {

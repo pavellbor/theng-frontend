@@ -4,6 +4,7 @@ import ProgressBar from 'primevue/progressbar'
 import { useExercisesStore } from '@/entities/exercises/exercises.store'
 import { ref, computed } from 'vue'
 import { useAuthStore } from '@/entities/auth'
+import ExercisesHint from './ExercisesHint.vue'
 
 const exercisesStore = useExercisesStore()
 const authStore = useAuthStore()
@@ -42,16 +43,6 @@ const handleSubmit = () => {
           </p>
           <div class="flex flex-wrap justify-center gap-2">
             <Badge
-              v-if="!exercisesStore.exercise?.isWordRepetition"
-              :value="`Слово: ${exercisesStore.exercise?.sentence.word.word}`"
-              severity="secondary"
-            />
-            <Badge
-              v-if="!exercisesStore.exercise?.isGrammarRepetition"
-              :value="`Грамматика: ${exercisesStore.exercise?.sentence.grammarTopic.name}`"
-              severity="secondary"
-            />
-            <Badge
               v-if="
                 exercisesStore.exercise?.isWordRepetition &&
                 exercisesStore.exercise?.isGrammarRepetition
@@ -70,6 +61,9 @@ const handleSubmit = () => {
               severity="secondary"
             />
           </div>
+          
+          <!-- Компонент с подсказками -->
+          <ExercisesHint class="mt-4" />
         </div>
       </template>
       <template #footer>
