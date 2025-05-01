@@ -26,7 +26,7 @@ const handleHideHint = () => {
   <div class="mt-4">
     <div v-if="!exercisesStore.isHintVisible" class="flex gap-2">
       <Button
-        label="Подсказка по слову"
+        :label="`Подсказка по слову (${exercisesStore.exercise?.sentence.word.russianTranslation})`"
         outlined
         severity="info"
         size="small"
@@ -84,7 +84,7 @@ const handleHideHint = () => {
                  (exercisesStore.requestedHintType === HintType.WORD || 
                   exercisesStore.requestedHintType === HintType.BOTH)"
           >
-            <h3 class="text-lg font-bold text-indigo-600 mb-1">Слово</h3>
+            <h3 class="text-lg font-bold text-indigo-600 mb-1">Слово "{{ exercisesStore.exercise?.sentence.word.russianTranslation }}"</h3>
             <p>{{ exercisesStore.hint.wordHint }}</p>
           </div>
           <div 
