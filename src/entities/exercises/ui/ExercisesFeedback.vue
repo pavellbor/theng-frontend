@@ -36,9 +36,6 @@ const progress = computed(() => {
               exercisesStore.exercise?.sentence.englishSentence
             }}</span>
           </p>
-          <div v-if="exercisesStore.exercise?.sentence.literalTranslation" class="mb-4 text-sm text-gray-600 italic">
-            {{ exercisesStore.exercise?.sentence.literalTranslation }}
-          </div>
           <div class="flex gap-2">
             <Badge
               :value="`Слово: ${exercisesStore.exercise?.sentence.word.word}`"
