@@ -11,6 +11,7 @@ export enum HintType {
   WORD = 'word',
   GRAMMAR = 'grammar',
   BOTH = 'both',
+  TRANSLATION = 'translation',
 }
 
 export const startSession = async () => {

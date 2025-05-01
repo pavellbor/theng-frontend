@@ -77,4 +77,5 @@ export interface TranslationHint {
   wordHint: string
   grammarHint: string
   generalHint: string
+  translationHint?: string
 }

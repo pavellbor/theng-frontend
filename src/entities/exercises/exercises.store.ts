@@ -22,6 +22,8 @@ interface ExercisesState {
   hint: TranslationHint | null
   isHintVisible: boolean
   requestedHintType: HintType | null
+  isTranslationShown: boolean
+  translationHint?: string
 }
 
 export const useExercisesStore = defineStore('exercises', {
@@ -43,6 +45,8 @@ export const useExercisesStore = defineStore('exercises', {
     hint: null,
     isHintVisible: false,
     requestedHintType: null,
+    isTranslationShown: false,
+    translationHint: undefined,
   }),
 
   actions: {
@@ -147,15 +151,33 @@ export const useExercisesStore = defineStore('exercises', {
       this.requestedHintType = null;
     },
 
+    async showTranslation() {
+      this.isHintLoading = true;
+      try {
+        const hint = await exercisesApi.getTranslationHint(HintType.TRANSLATION);
+        this.translationHint = hint.translationHint;
+        this.isTranslationShown = true;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      } finally {
+        this.isHintLoading = false;
+      }
+    },
+
+    resetTranslationShown() {
+      this.isTranslationShown = false;
+      this.translationHint = undefined;
+    },
+
     async showNextSentence() {
       this.exercise = this.nextExercise;
-
       this.userTranslation = '';
       this.isCorrect = false;
       this.nextExercise = null;
       this.feedback = null;
       this.clearHint();
-
+      this.resetTranslationShown();
       this.setScreen('test');
     },
 
