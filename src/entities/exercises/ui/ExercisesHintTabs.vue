@@ -7,21 +7,21 @@ const exercisesStore = useExercisesStore()
 
 <template>
   <TabView class="mt-4">
-    <TabPanel header="Слово">
+    <TabPanel header="Слово" value="word">
       <h3 class="text-lg font-bold text-indigo-600 mb-1">
         Слово "{{ exercisesStore.exercise?.sentence.word.russianTranslation }}"
       </h3>
       <p>{{ exercisesStore.hint?.wordHint }}</p>
     </TabPanel>
-    <TabPanel header="Грамматика">
+    <TabPanel header="Грамматика" value="grammar">
       <h3 class="text-lg font-bold text-indigo-600 mb-1">Грамматика</h3>
       <p>{{ exercisesStore.hint?.grammarHint }}</p>
     </TabPanel>
-    <TabPanel header="Общая подсказка">
+    <TabPanel header="Общая подсказка" value="general">
       <h3 class="text-lg font-bold text-indigo-600 mb-1">Общая подсказка</h3>
       <p>{{ exercisesStore.hint?.generalHint }}</p>
     </TabPanel>
-    <TabPanel header="Перевод">
+    <TabPanel header="Перевод" value="translation">
       <div class="flex flex-col items-center">
         <Button
           label="Показать перевод"
