@@ -24,34 +24,39 @@ const handleHideHint = () => {
 
 <template>
   <div class="mt-4">
-    <div v-if="!exercisesStore.isHintVisible" class="flex gap-2">
+    <div v-if="!exercisesStore.isHintVisible" class="flex gap-1">
       <Button
-        :label="`Подсказка по слову (${exercisesStore.exercise?.sentence.word.russianTranslation})`"
+        :label="`Слово - ${exercisesStore.exercise?.sentence.word.russianTranslation}`"
         outlined
         severity="info"
         size="small"
         icon="pi pi-book"
         :loading="exercisesStore.isHintLoading"
         @click="handleGetWordHint"
+        class="text-xs px-2 py-1"
       />
       <Button
-        label="Подсказка по грамматике"
+        label="Грамматика"
         outlined
         severity="info"
         size="small"
         icon="pi pi-pencil"
         :loading="exercisesStore.isHintLoading"
         @click="handleGetGrammarHint"
+        class="text-xs px-2 py-1"
       />
       <Button
-        label="Все подсказки"
+        label="Показать перевод"
         outlined
         severity="info"
         size="small"
-        icon="pi pi-lightbulb"
-        :loading="exercisesStore.isHintLoading"
-        @click="handleGetHint"
+        :disabled="exercisesStore.isTranslationShown || exercisesStore.isHintLoading"
+        @click="exercisesStore.showTranslation"
+        class="text-xs px-2 py-1"
       />
+    </div>
+    <div v-if="exercisesStore.isTranslationShown && !exercisesStore.isHintVisible" class="mt-2 text-sm text-green-700">
+      {{ exercisesStore.translationHint }}
     </div>
 
     <Card v-if="exercisesStore.isHintVisible && exercisesStore.hint" class="mt-2">
@@ -84,23 +89,23 @@ const handleHideHint = () => {
                  (exercisesStore.requestedHintType === HintType.WORD || 
                   exercisesStore.requestedHintType === HintType.BOTH)"
           >
-            <h3 class="text-lg font-bold text-indigo-600 mb-1">Слово "{{ exercisesStore.exercise?.sentence.word.russianTranslation }}"</h3>
-            <p>{{ exercisesStore.hint.wordHint }}</p>
+            <h3 class="text-base font-bold text-indigo-600 mb-0.5">Слово "{{ exercisesStore.exercise?.sentence.word.russianTranslation }}"</h3>
+            <p class="text-sm">{{ exercisesStore.hint.wordHint }}</p>
           </div>
           <div 
             v-if="exercisesStore.hint.grammarHint && 
                  (exercisesStore.requestedHintType === HintType.GRAMMAR || 
                   exercisesStore.requestedHintType === HintType.BOTH)"
           >
-            <h3 class="text-lg font-bold text-indigo-600 mb-1">Грамматика</h3>
-            <p>{{ exercisesStore.hint.grammarHint }}</p>
+            <h3 class="text-base font-bold text-indigo-600 mb-0.5">Грамматика</h3>
+            <p class="text-sm">{{ exercisesStore.hint.grammarHint }}</p>
           </div>
           <div 
             v-if="exercisesStore.hint.generalHint && 
                  exercisesStore.requestedHintType === HintType.BOTH"
           >
-            <h3 class="text-lg font-bold text-indigo-600 mb-1">Общая подсказка</h3>
-            <p>{{ exercisesStore.hint.generalHint }}</p>
+            <h3 class="text-base font-bold text-indigo-600 mb-0.5">Общая подсказка</h3>
+            <p class="text-sm">{{ exercisesStore.hint.generalHint }}</p>
           </div>
         </div>
       </template>

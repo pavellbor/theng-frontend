@@ -64,17 +64,6 @@ const handleSubmit = () => {
 
           <!-- Компонент с подсказками -->
           <ExercisesHint class="mt-4" />
-          <Button
-            class="mt-4"
-            label="Показать перевод"
-            severity="info"
-            outlined
-            :disabled="exercisesStore.isTranslationShown || exercisesStore.isHintLoading"
-            @click="exercisesStore.showTranslation"
-          />
-          <div v-if="exercisesStore.isTranslationShown" class="mt-2 text-xl text-green-700">
-            {{ exercisesStore.translationHint }}
-          </div>
         </div>
       </template>
       <template #footer>
