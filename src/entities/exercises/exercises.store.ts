@@ -55,30 +55,10 @@ export const useExercisesStore = defineStore('exercises', {
     },
 
     async startSession() {
-      // this.$reset()
-
-      this.isLoading = false,
-      this.session = null,
-      this.exercise = null,
-      this.accuracy = 0,
-      this.duration = 0,
-      this.isCompleted = false,
-      this.isCorrect = false,
-      this.feedback = null,
-      this.levelUp = false,
-      this.newCefrLevel = '',
-      this.userTranslation = '',
-      this.nextExercise = null,
-      this.isHintLoading = false,
-      this.hint = null,
-      this.isHintVisible = false,
-      this.requestedHintType = null,
-      this.isTranslationShown = false,
-      this.translationHint = undefined,
-
       this.isLoading = true
       try {
         const response = await exercisesApi.startSession()
+        this.$reset()
         this.session = response.session
         this.exercise = response.exercise
 
@@ -137,67 +117,67 @@ export const useExercisesStore = defineStore('exercises', {
     },
 
     async loadTranslationHint(type?: HintType) {
-      this.isHintLoading = true;
-      this.requestedHintType = type || HintType.BOTH;
+      this.isHintLoading = true
+      this.requestedHintType = type || HintType.BOTH
       try {
-        this.hint = await exercisesApi.getTranslationHint(type);
-        this.isHintVisible = true;
+        this.hint = await exercisesApi.getTranslationHint(type)
+        this.isHintVisible = true
       } catch (error) {
-        console.error(error);
-        throw error;
+        console.error(error)
+        throw error
       } finally {
-        this.isHintLoading = false;
+        this.isHintLoading = false
       }
     },
 
     async loadWordHint() {
-      this.requestedHintType = HintType.WORD;
-      return this.loadTranslationHint(HintType.WORD);
+      this.requestedHintType = HintType.WORD
+      return this.loadTranslationHint(HintType.WORD)
     },
 
     async loadGrammarHint() {
-      this.requestedHintType = HintType.GRAMMAR;
-      return this.loadTranslationHint(HintType.GRAMMAR);
+      this.requestedHintType = HintType.GRAMMAR
+      return this.loadTranslationHint(HintType.GRAMMAR)
     },
 
     hideHint() {
-      this.isHintVisible = false;
+      this.isHintVisible = false
     },
 
     clearHint() {
-      this.hint = null;
-      this.isHintVisible = false;
-      this.requestedHintType = null;
+      this.hint = null
+      this.isHintVisible = false
+      this.requestedHintType = null
     },
 
     async showTranslation() {
-      this.isHintLoading = true;
+      this.isHintLoading = true
       try {
-        const hint = await exercisesApi.getTranslationHint(HintType.TRANSLATION);
-        this.translationHint = hint.translationHint;
-        this.isTranslationShown = true;
+        const hint = await exercisesApi.getTranslationHint(HintType.TRANSLATION)
+        this.translationHint = hint.translationHint
+        this.isTranslationShown = true
       } catch (error) {
-        console.error(error);
-        throw error;
+        console.error(error)
+        throw error
       } finally {
-        this.isHintLoading = false;
+        this.isHintLoading = false
       }
     },
 
     resetTranslationShown() {
-      this.isTranslationShown = false;
-      this.translationHint = undefined;
+      this.isTranslationShown = false
+      this.translationHint = undefined
     },
 
     async showNextSentence() {
-      this.exercise = this.nextExercise;
-      this.userTranslation = '';
-      this.isCorrect = false;
-      this.nextExercise = null;
-      this.feedback = null;
-      this.clearHint();
-      this.resetTranslationShown();
-      this.setScreen('test');
+      this.exercise = this.nextExercise
+      this.userTranslation = ''
+      this.isCorrect = false
+      this.nextExercise = null
+      this.feedback = null
+      this.clearHint()
+      this.resetTranslationShown()
+      this.setScreen('test')
     },
 
     async finishSession() {
@@ -216,6 +196,5 @@ export const useExercisesStore = defineStore('exercises', {
         this.isLoading = false
       }
     },
-    
   },
 })
