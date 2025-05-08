@@ -17,9 +17,6 @@ export const router = createRouter({
     {
       path: '/',
       component: MainLayout,
-      meta: {
-        requiresAuth: true,
-      },
       children: [
         {
           path: '',
@@ -30,16 +27,23 @@ export const router = createRouter({
           component: DashboardPage,
           meta: {
             requiresStudyLevel: true,
+            requiresAuth: true,
           },
         },
         {
           path: '/assessment',
           name: 'assessment',
+          meta: {
+            requiresAuth: true,
+          },
           component: () => import('@/pages/AssessmentPage.vue'),
         },
         {
           path: '/exercises',
           name: 'exercises',
+          meta: {
+            requiresAuth: true,
+          },
           component: () => import('@/pages/ExercisesPage.vue'),
         },
       ],
