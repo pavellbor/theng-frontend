@@ -55,7 +55,26 @@ export const useExercisesStore = defineStore('exercises', {
     },
 
     async startSession() {
-      this.$reset()
+      // this.$reset()
+
+      this.isLoading = false,
+      this.session = null,
+      this.exercise = null,
+      this.accuracy = 0,
+      this.duration = 0,
+      this.isCompleted = false,
+      this.isCorrect = false,
+      this.feedback = null,
+      this.levelUp = false,
+      this.newCefrLevel = '',
+      this.userTranslation = '',
+      this.nextExercise = null,
+      this.isHintLoading = false,
+      this.hint = null,
+      this.isHintVisible = false,
+      this.requestedHintType = null,
+      this.isTranslationShown = false,
+      this.translationHint = undefined,
 
       this.isLoading = true
       try {

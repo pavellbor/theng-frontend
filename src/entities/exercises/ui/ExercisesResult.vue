@@ -30,7 +30,7 @@ const router = useRouter()
       <template #footer>
         <div class="flex justify-between gap-4">
           <Button label="Вернуться на главную" variant="outlined" @click="router.push('/')" />
-          <Button label="Продолжить обучение" @click="exercisesStore.startSession" />
+          <Button :loading="exercisesStore.isLoading" label="Продолжить обучение" @click="exercisesStore.startSession" />
         </div>
       </template>
     </Card>

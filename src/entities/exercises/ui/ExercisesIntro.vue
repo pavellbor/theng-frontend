@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { Button, Card, Message } from 'primevue'
 import { useExercisesStore } from '@/entities/exercises/exercises.store'
+import { useRouter } from 'vue-router'
 
 const exercisesStore = useExercisesStore()
+const router = useRouter()
 </script>
 
 <template>
@@ -25,7 +27,7 @@ const exercisesStore = useExercisesStore()
             навыки.
           </p>
           <Message severity="secondary" icon="pi pi-info-circle" size="small">
-            <p class="text-sm py-2">
+            <p class="py-2 text-sm">
               Старайтесь переводить предложения самостоятельно, без использования переводчиков,
               чтобы максимально эффективно улучшать свои навыки.
             </p>
@@ -34,12 +36,12 @@ const exercisesStore = useExercisesStore()
       </template>
       <template #footer>
         <div class="flex justify-between">
+          <Button label="Вернуться" variant="outlined" @click="router.push('/')" />
           <Button
-            label="Вернуться"
-            variant="outlined"
-            
+            :loading="exercisesStore.isLoading"
+            label="Начать упражнения"
+            @click="exercisesStore.startSession"
           />
-          <Button label="Начать упражнения" @click="exercisesStore.startSession" />
         </div>
       </template>
     </Card>
