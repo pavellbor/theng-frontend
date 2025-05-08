@@ -29,7 +29,7 @@ const router = useRouter()
       </template>
       <template #footer>
         <div class="flex justify-between gap-4">
-          <Button label="Вернуться на главную" variant="outlined" @click="router.push('/')" />
+          <Button label="Вернуться на главную" variant="outlined" @click="router.push('/dashboard')" />
           <Button :loading="exercisesStore.isLoading" label="Продолжить обучение" @click="exercisesStore.startSession" />
         </div>
       </template>

@@ -42,7 +42,7 @@ export const useAssessmentStore = defineStore('assessment', {
       await assessmentApi.skipAssessment()
       await authStore.fetchUser()
 
-      this.$router.push('/')
+      this.$router.push('/dashboard')
     },
 
     async startAssessment() {

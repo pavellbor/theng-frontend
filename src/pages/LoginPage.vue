@@ -43,7 +43,7 @@ const onSubmit = async (data: FormSubmitEvent) => {
 
   try {
     await authStore.login(data.values as FormData)
-    router.push('/')
+    router.push('/dashboard')
   } catch (error) {
     console.error(error)
 

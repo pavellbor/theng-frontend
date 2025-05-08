@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainLayout from '@/widgets/MainLayout.vue'
-import HomePage from '@/pages/HomePage.vue'
+import DashboardPage from '@/pages/DashboardPage.vue'
 import { useAuthStore } from '@/entities/auth'
+import HomePage from '@/pages/HomePage.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -23,6 +24,10 @@ export const router = createRouter({
         {
           path: '',
           component: HomePage,
+        },
+        {
+          path: '/dashboard',
+          component: DashboardPage,
           meta: {
             requiresStudyLevel: true,
           },

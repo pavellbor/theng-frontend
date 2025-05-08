@@ -36,7 +36,7 @@ const router = useRouter()
       </template>
       <template #footer>
         <div class="flex justify-between">
-          <Button label="Вернуться" variant="outlined" @click="router.push('/')" />
+          <Button label="Вернуться" variant="outlined" @click="router.push('/dashboard')" />
           <Button
             :loading="exercisesStore.isLoading"
             label="Начать упражнения"
