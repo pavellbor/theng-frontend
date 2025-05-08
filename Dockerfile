@@ -2,10 +2,14 @@ FROM node:20-alpine as build
 
 WORKDIR /app
 
+# Сначала копируем файлы package.json и package-lock.json (если есть)
 COPY package*.json ./
 
+# Устанавливаем зависимости
+# Этот слой будет кешироваться, если файлы package*.json не изменились
 RUN npm install
 
+# Затем копируем остальные файлы приложения
 COPY . .
 
 ARG API_URL
